@@ -4,6 +4,10 @@ on:
   push:
     branches: [ "main" ]  # deploy only after merge
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -35,4 +39,4 @@ jobs:
             docker pull $IMAGE_NAME
             docker stop patientsafe_app || true
             docker rm patientsafe_app || true
-            docker run -d --restart=always -p 5100:5100 --name patientsafe_app $IMAGE_NAME
+            docker run -d --restart=always -p 5700:5700 --name patientsafe_app $IMAGE_NAME
