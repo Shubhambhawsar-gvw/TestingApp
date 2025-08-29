@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Drug Reaction Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            background-color: #f8f9fa;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type=text] {
+            width: 400px;
+            padding: 8px;
+            font-size: 16px;
+        }
+        button {
+            padding: 8px 15px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h2>Adverse Drug Reaction & Product Quality Checker</h2>
+
+    <form method="POST">
+        <input type="text" name="text_input" placeholder="Enter your text..." value="{{ input_text }}" required>
+        <button type="submit">Check</button>
+    </form>
+
+    {% if output %}
+        <div class="result">
+            {% if output.error %}
+                <p class="error">{{ output.error }}</p>
+            {% else %}
+                <p><b>Adverse Drug Reaction Term:</b> {{ output.Adverse_Drug_Reaction_Term }}</p>
+                <p><b>Product Quality Complaint Term:</b> {{ output.Product_Quality_Complaint_Term }}</p>
+                <p><b>Product Quality Issue:</b> {{ output.Product_Quality_Issue }}</p>
+            {% endif %}
+        </div>
+    {% endif %}
+</body>
+</html>
